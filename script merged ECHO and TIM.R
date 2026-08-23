@@ -3,6 +3,7 @@ library(tis)
 library(psy)
 library(psych)
 library(nlme)
+library(MBESS)
 
 # function for half rule, for use in rows of data, to compute mean score
 # til beregning av gjennomsnittsskC%r
@@ -22,7 +23,7 @@ names(ti)
 
 # ECHO 
 summary(ec[,c("t2stigmac01_1","t2stigmac02_2","t2stigmac03_3","t2stigmac04_4",
-           "t2stigmac05_5","t2stigmac06_6","t2stigmac07_7","t2stigmac08_8",
+              "t2stigmac05_5","t2stigmac06_6","t2stigmac07_7","t2stigmac08_8",
               "t2stigmac09_9","t2stigmac10_10")])
 # ECHO data with valid stigma variable
 es <- ec[is.na(ec$t2stigmac01_1)==0,]
@@ -451,21 +452,21 @@ cronbach(et[et$type=="ECHO",c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01
                               "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
                               "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 cronbach(et[et$type=="TIM",c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-                              "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-                              "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-                              "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-                              "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-                              "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-                              "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-                              "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+                             "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+                             "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+                             "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+                             "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+                             "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+                             "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+                             "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 cronbach(et[,c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-                              "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-                              "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-                              "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-                              "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-                              "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-                              "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-                              "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+               "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+               "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+               "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+               "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+               "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+               "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+               "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 # MASC T1, Cronbach's alpha 0.87 in ECHO and 0.84 i TIM, 0.87 merged
 # next look at T2
 cronbach(et[et$type=="ECHO",c("pac01_1n","pac01_2n","pac01_3n","pac01_4n","pac01_5n",
@@ -538,87 +539,101 @@ cronbach(et[,c("ace01n","ace02n","ace03n","ace04n","ace10n")])
 # compute McDonald's Omega
 # first at t1 for ECHO, TIM, and merged
 omega(et[et$type=="ECHO",c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-                              "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-                              "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-                              "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-                              "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-                              "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-                              "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-                              "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+                           "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+                           "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+                           "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+                           "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+                           "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+                           "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+                           "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 # Omega ECHO T1 = 0.89
 omega(et[et$type=="TIM",c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-                             "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-                             "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-                             "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-                             "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-                             "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-                             "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-                             "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+                          "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+                          "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+                          "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+                          "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+                          "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+                          "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+                          "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 # Omega TIM T1 = 0.86
 omega(et[,c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-               "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-               "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-               "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-               "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-               "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-               "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-               "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+            "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+            "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+            "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+            "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+            "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+            "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+            "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Omega merged T1 = 0.88
 # Omega at T2 for MASC
 omega(et[et$type=="ECHO",c("pac01_1n","pac01_2n","pac01_3n","pac01_4n","pac01_5n",
-                              "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
-                              "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
-                              "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
-                              "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
-                              "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
-                              "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
-                              "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
+                           "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
+                           "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
+                           "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
+                           "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
+                           "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
+                           "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
+                           "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
 omega(et[et$type=="TIM",c("pac01_1n","pac01_2n","pac01_3n","pac01_4n","pac01_5n",
-                             "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
-                             "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
-                             "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
-                             "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
-                             "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
-                             "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
-                             "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
+                          "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
+                          "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
+                          "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
+                          "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
+                          "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
+                          "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
+                          "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
 omega(et[,c("pac01_1n","pac01_2n","pac01_3n","pac01_4n","pac01_5n",
-               "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
-               "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
-               "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
-               "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
-               "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
-               "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
-               "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
+            "pac01_6n","pac01_7n","pac02_8n","pac02_9n","pac02_10n",
+            "pac02_11n","pac02_12n","pac02_13n","pac02_14n","pac03_15n",
+            "pac03_16n","pac03_17n","pac03_18n","pac03_19n","pac03_20n",
+            "pac03_21n","pac04_22n","pac04_23n","pac04_24n","pac04_25n",
+            "pac04_26n","pac04_27n","pac04_28n","pac05_29n","pac05_30n",
+            "pac05_31n","pac05_32n","pac05_33n","pac05_34n","pac05_35n",
+            "pac06_36n","pac06_37n","pac06_38n","pac06_39n")])
 # MASC T2, omega 0.92 in ECHO and 0,93 in TIM, merged  0.93
 
 # omega SMFQ
 # First T1
 omega(et[et$type=="ECHO",c("bmc01_1n","bmc01_2n","bmc01_3n","bmc01_4n",
-                              "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
-                              "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
-                              "bmc02_13n")])
+                           "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
+                           "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
+                           "bmc02_13n")])
 omega(et[et$type=="TIM",c("bmc01_1n","bmc01_2n","bmc01_3n","bmc01_4n",
-                             "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
-                             "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
-                             "bmc02_13n")])
+                          "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
+                          "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
+                          "bmc02_13n")])
 omega(et[,c("bmc01_1n","bmc01_2n","bmc01_3n","bmc01_4n",
-               "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
-               "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
-               "bmc02_13n")])
+            "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
+            "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
+            "bmc02_13n")])
 # SMFQ T1, omega 0.86 in ECHO and 0.86 in TIM, merged 0.86
 # Omega at T2 for SMFQ
 omega(et[et$type=="ECHO",c("pmc01_1n","pmc01_2n","pmc01_3n","pmc01_4n",
-                              "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
-                              "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
-                              "pmc02_13n")])
+                           "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
+                           "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
+                           "pmc02_13n")])
 omega(et[et$type=="TIM",c("pmc01_1n","pmc01_2n","pmc01_3n","pmc01_4n",
-                             "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
-                             "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
-                             "pmc02_13n")])
+                          "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
+                          "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
+                          "pmc02_13n")])
 omega(et[,c("pmc01_1n","pmc01_2n","pmc01_3n","pmc01_4n",
-               "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
-               "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
-               "pmc02_13n")])
+            "pmc01_5n","pmc01_6n","pmc01_7n","pmc02_8n",
+            "pmc02_9n","pmc02_10n","pmc02_11n","pmc02_12n",
+            "pmc02_13n")])
 # SMFQ T2, omega 0.91 in ECHO and 0.91 i TIM, merged 0.91
 
 # omega for stigma, use item 5,6,7
@@ -641,13 +656,13 @@ table(et$ace08n,et$ace09n)
 # scale scors using  half rule
 # mean scores
 summary(et[,c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
-               "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
-               "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
-               "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
-               "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
-               "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
-               "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
-               "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
+              "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
+              "bac02_11n","bac02_12n","bac02_13n","bac02_14n","bac03_15n",
+              "bac03_16n","bac03_17n","bac03_18n","bac03_19n","bac03_20n",
+              "bac03_21n","bac04_22n","bac04_23n","bac04_24n","bac04_25n",
+              "bac04_26n","bac04_27n","bac04_28n","bac05_29n","bac05_30n",
+              "bac05_31n","bac05_32n","bac05_33n","bac05_34n","bac05_35n",
+              "bac06_36n","bac06_37n","bac06_38n","bac06_39n")])
 et$MASC.T1.mean.hr <- 
   apply(et[,c("bac01_1n","bac01_2n","bac01_3n","bac01_4n","bac01_5n",
               "bac01_6n","bac01_7n","bac02_8n","bac02_9n","bac02_10n",
@@ -669,9 +684,9 @@ et$MASC.T2.mean.hr <-
               "pac06_36n","pac06_37n","pac06_38n","pac06_39n")], 1, halfrulef) -1 
 # subtract 1 to make a acore from 0 to 3
 summary(et[,c("bmc01_1n","bmc01_2n","bmc01_3n","bmc01_4n",
-               "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
-               "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
-               "bmc02_13n","bmc02_14n")])
+              "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
+              "bmc02_9n","bmc02_10n","bmc02_11n","bmc02_12n",
+              "bmc02_13n","bmc02_14n")])
 et$SMFQ.T1.mean.hr <- 
   apply(et[,c("bmc01_1n","bmc01_2n","bmc01_3n","bmc01_4n",
               "bmc01_5n","bmc01_6n","bmc01_7n","bmc02_8n",
@@ -756,7 +771,7 @@ summary(lm(SMFQ.T2.sum.hr ~ trinn3, data=et))
 by(et$SMFQ.T2.sum.hr,et$trinn3,mean,na.rm=TRUE)
 by(et$SMFQ.T2.sum.hr,et$trinn3,sd,na.rm=TRUE)
 
-#STIGMA, mean and standard deviation, table 2
+#STIGMA, mean and standard deviation, table 2, now tabel 1 (aug 26)
 summary(et[,c("ace01n", "ace02n","ace03n","ace04n","ace05n","ace06n","ace07n","ace08n","ace09n","ace10n")])
 apply(et[,c("ace01n", "ace02n","ace03n","ace04n","ace05n","ace06n","ace07n",
             "ace08n","ace09n","ace10n")],2, mean)
@@ -766,13 +781,13 @@ apply(et[,c("ace01n", "ace02n","ace03n","ace04n","ace05n","ace06n","ace07n",
 et$usersatmean <- apply(et[,c("ace01n", "ace02n","ace03n","ace04n","ace10n")], 
                         1,mean)
 et$stigmamean <- apply(et[,c("ace05n","ace06n","ace07n")], 
-                        1,mean)
+                       1,mean)
 summary(et[,c("usersatmean","stigmamean","ace08n","ace09n")])
 # make ACE diagram
 acefigur.mean <- apply(et[,c("usersatmean","stigmamean","ace08n","ace09n")], 
                        2,mean)
 acefigur.sd <- apply(et[,c("usersatmean","stigmamean","ace08n","ace09n")], 
-                       2,sd)
+                     2,sd)
 acefigur.mean
 acefigur.sd
 ?par
@@ -788,6 +803,23 @@ mtext(side = 2,line = 2,text = "Mean score")
 mtext(side = 3, line = 0.3, 
       text = "ACE Evaluation: User satisfaction, Stigma and Coping")
 par(mar = c(bottom =5, left = 4, top = 4, right = 2)+ 0.1)
+
+# figur med endret rekkefølge
+acefigur.mean
+acefigur.meanNY <- acefigur.mean[c(2,1,3,4)]
+acefigur.meanNY
+par(mar = c(bottom =2, left = 3, top = 2, right = 0.3)+ 0.1)
+barplot(acefigur.meanNY,  names.arg = c("Stigma","User satisfaction",
+                                      "Coping T1", "Coping T2"),
+        axes = FALSE,ylim = c(0,10),
+        col=c("brown1","cyan3","chocolate1", "chartreuse2"))
+box()
+axis(2,las =1, at=c(0,2,4,6,8,10))
+mtext(side = 2,line = 2,text = "Mean score")
+mtext(side = 3, line = 0.3, 
+      text = "ACE Evaluation: Stigma, User satisfaction and Coping")
+par(mar = c(bottom =5, left = 4, top = 4, right = 2)+ 0.1)
+
 
 # ACE, test gender differences
 t.test(ace01n ~ gender, data=et)
@@ -940,7 +972,7 @@ summary(et[,c("ace06n", "gender","trinn6", "stor")])
 #trinn6 (grade level with reference 6) has one missing
 eg <- groupedData(et, formula = ace06n~gender|skole)
 lme1.ertet <- lme(ace06n~gender+trinn6+stor, random =~1,  
-                 data = eg[is.na(eg$trinn6)==0,])
+                  data = eg[is.na(eg$trinn6)==0,])
 intervals(lme1.ertet) # stability check, ok
 anova(lme1.ertet,type = "marginal") #p-velues, only gender significant
 summary(lme1.ertet)
@@ -949,7 +981,7 @@ intervals(lme1.ertet)# look at fixed effects, girls a little lower than boys
 #hierarchical set-up
 summary(et[,c("ace06n", "gender","trinn6", "stor","MASC.T1.0.100.hr","SMFQ.T1.0.100.hr")])
 lme2.ertet <- lme(ace06n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr, 
-                 random =~1, data = eg[is.na(eg$trinn6)==0,])
+                  random =~1, data = eg[is.na(eg$trinn6)==0,])
 intervals(lme2.ertet) 
 anova(lme2.ertet,type = "marginal")
 summary(lme2.ertet)
@@ -961,7 +993,7 @@ summary(et$skole) #no missing
 summary(et[,c("ace07n", "gender","trinn6", "stor")])
 eg <- groupedData(et, formula = ace07n~gender|skole)
 lme1.kritisert <- lme(ace07n~gender+trinn6+stor, random =~1,  
-                  data = eg[is.na(eg$trinn6)==0,])
+                      data = eg[is.na(eg$trinn6)==0,])
 intervals(lme1.kritisert)
 anova(lme1.kritisert,type = "marginal") 
 summary(lme1.kritisert)
@@ -971,7 +1003,7 @@ intervals(lme1.kritisert)
 summary(et[,c("ace07n", "gender","trinn6", "stor","MASC.T1.0.100.hr","SMFQ.T1.0.100.hr")])
 # kun trinn som har en missing
 lme2.kritisert <- lme(ace07n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr, 
-                  random =~1, data = eg[is.na(eg$trinn6)==0,])
+                      random =~1, data = eg[is.na(eg$trinn6)==0,])
 intervals(lme2.kritisert) 
 anova(lme2.kritisert,type = "marginal") #p-velues, gender close tosignificant
 summary(lme2.kritisert)
@@ -1111,10 +1143,305 @@ drop1(lm1.angstdiff, test= "Chisq") # overall p-values for multi-category variab
 confint(lm1.angstdiff)
 # next change (improvement) in depression
 lm1.depresjonsdiff <- lm(I(SMFQ.T1.0.100.hr-SMFQ.T2.0.100.hr)~
-                      gender+trinn3+stor+ace05n+ace06n+ace07n, data = et)
+                           gender+trinn3+stor+ace05n+ace06n+ace07n, data = et)
 summary(lm1.depresjonsdiff) 
 drop1(lm1.depresjonsdiff, test= "Chisq")
 confint(lm1.depresjonsdiff)
 
 # finally descriptives
 summary(et[,c("gender","trinn","stor")])
+
+# revisjon august 2026, ser pC% mixed effects-modellene
+#lme1.flau <- lme(ace05n~gender+trinn6+stor, random =~1,  
+#                 data = eg[is.na(eg$trinn6)==0,])
+#lme2.flau <- lme(ace05n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr, 
+#                 random =~1, data = eg[is.na(eg$trinn6)==0,])
+#lme1.kritisert <- lme(ace07n~gender+trinn6+stor, random =~1,  
+#                      data = eg[is.na(eg$trinn6)==0,])
+#lme2.kritisert <- lme(ace07n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr, 
+#                      random =~1, data = eg[is.na(eg$trinn6)==0,])
+#lme1.ertet <- lme(ace06n~gender+trinn6+stor, random =~1,  
+#                  data = eg[is.na(eg$trinn6)==0,])
+#lme2.ertet <- lme(ace06n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr, 
+#                  random =~1, data = eg[is.na(eg$trinn6)==0,])
+# klyngestruktur, ser pC% eg
+#eg <- groupedData(et, formula = ace05n~gender|skole)
+# ok dette er mixed effects-modeller klynget pC% skole
+# ser pC% de avhengige variablene
+summary(eg[,c("ace05n","ace07n","ace06n")])
+# fra 1 til 10
+# ser pC% antallene
+summary(lme1.flau)
+summary(lme1.kritisert)
+summary(lme1.ertet)
+# det er 1000 personer pC% 69b skoler
+# residualplott
+plot(lme1.flau) # stripete som vbentet, ellers ikke klart bilde
+qqnorm(lme1.flau) # klare haler helt til venmstre og litt til hC8yre
+qqnorm(lme1.kritisert) # klar hale helt til venstre
+qqnorm(lme1.ertet) # samme
+qqnorm(lme2.flau) 
+qqnorm(lme2.kritisert) 
+qqnorm(lme2.ertet)
+# samme som lme1 stort sett
+# sjekker gruppe i den delen av TIM som slC%s sammen med ECHO
+summary(ts$deltaker) # alle disse er i intervensjonsgruppa
+# sjekker gruppe i den delen av ECHO som slC%s sammen med TIM
+summary(es$tiltak) # alle grupper er med
+# lager varianter av modellene der det er justert for studie
+summary(eg$type) # ECHO og TIM, ingen missing
+lme1.t.flau <- lme(ace05n~gender+trinn6+stor+type, random =~1,  
+                   data = eg[is.na(eg$trinn6)==0,])
+lme2.t.flau <- lme(ace05n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr+type, 
+                   random =~1, data = eg[is.na(eg$trinn6)==0,])
+lme1.t.kritisert <- lme(ace07n~gender+trinn6+stor+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+lme2.t.kritisert <- lme(ace07n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr+type, 
+                        random =~1, data = eg[is.na(eg$trinn6)==0,])
+lme1.t.ertet <- lme(ace06n~gender+trinn6+stor+type, random =~1,  
+                    data = eg[is.na(eg$trinn6)==0,])
+lme2.t.ertet <- lme(ace06n~gender+trinn6+stor+MASC.T1.0.100.hr+SMFQ.T1.0.100.hr+type, 
+                    random =~1, data = eg[is.na(eg$trinn6)==0,])
+# sjekker modellstabilitet
+intervals(lme1.t.flau) # litt strekk pC% skolenivC%, men akseptabelt
+intervals(lme2.t.flau) # litt strekk pC% skolenivC%, men akseptabelt
+intervals(lme1.t.kritisert) # ok
+intervals(lme2.t.kritisert) # ok
+intervals(lme1.t.ertet) # ok
+intervals(lme2.t.ertet) # ok
+#residual-fordelinger
+qqnorm(lme1.t.flau)
+qqnorm(lme2.t.flau)
+qqnorm(lme1.t.kritisert)
+qqnorm(lme2.t.kritisert)
+qqnorm(lme1.t.ertet)
+qqnorm(lme2.t.ertet)
+
+# lager tabell for mixed effects-modellene der alle har med type som jmusteringsvariabel
+tabell.t.lme <- data.frame(
+  koef.flau.ju= summary(lme2.t.flau)$tTable[2:8,1])
+tabell.t.lme$koef.flau.uj <- c(summary(lme1.t.flau)$tTable[2:6,1],NA,NA)
+tabell.t.lme$koef.ertet.ju <- summary(lme2.t.ertet)$tTable[2:8,1]
+tabell.t.lme$koef.ertet.uj <- c(summary(lme1.t.ertet)$tTable[2:6,1],NA,NA)
+tabell.t.lme$koef.kritisert.ju <- summary(lme2.t.kritisert)$tTable[2:8,1]
+tabell.t.lme$koef.kritisert.uj <- c(summary(lme1.t.kritisert)$tTable[2:6,1],NA,NA)
+tabell.t.lme$lower.flau.ju <- intervals(lme2.t.flau)$fixed[2:8,1]
+tabell.t.lme$lower.flau.uj <- c(intervals(lme1.t.flau)$fixed[2:6,1], NA, NA)
+tabell.t.lme$lower.ertet.ju <- intervals(lme2.t.ertet)$fixed[2:8,1]
+tabell.t.lme$lower.ertet.uj <- c(intervals(lme1.t.ertet)$fixed[2:6,1], NA, NA)
+tabell.t.lme$lower.kritisert.ju <- intervals(lme2.t.kritisert)$fixed[2:8,1]
+tabell.t.lme$lower.kritisert.uj <- c(intervals(lme1.t.kritisert)$fixed[2:6,1], NA, NA)
+tabell.t.lme$upper.flau.ju <- intervals(lme2.t.flau)$fixed[2:8,3]
+tabell.t.lme$upper.flau.uj <- c(intervals(lme1.t.flau)$fixed[2:6,3], NA, NA)
+tabell.t.lme$upper.ertet.ju <- intervals(lme2.t.ertet)$fixed[2:8,3]
+tabell.t.lme$upper.ertet.uj <- c(intervals(lme1.t.ertet)$fixed[2:6,3], NA, NA)
+tabell.t.lme$upper.kritisert.ju <- intervals(lme2.t.kritisert)$fixed[2:8,3]
+tabell.t.lme$upper.kritisert.uj <- c(intervals(lme1.t.kritisert)$fixed[2:6,3], NA, NA)
+tabell.t.lme$p.flau.ju <- summary(lme2.t.flau)$tTable[2:8,5]
+tabell.t.lme$p.flau.uj <- c(summary(lme1.t.flau)$tTable[2:6,5], NA, NA)
+tabell.t.lme$p.ertet.ju <- summary(lme2.t.ertet)$tTable[2:8,5]
+tabell.t.lme$p.ertet.uj <- c(summary(lme1.t.ertet)$tTable[2:6,5], NA, NA)
+tabell.t.lme$p.kritisert.ju <- summary(lme2.t.kritisert)$tTable[2:8,5]
+tabell.t.lme$p.kritisert.uj <- c(summary(lme1.t.kritisert)$tTable[2:6,5], NA, NA)
+samlet.p.grade <- c(rep(NA,18), # samlet means overall
+                    anova(lme2.t.flau, type= "marginal")[3,4],
+                    anova(lme1.t.flau, type= "marginal")[3,4],
+                    anova(lme2.t.ertet, type= "marginal")[3,4],
+                    anova(lme1.t.ertet, type= "marginal")[3,4],
+                    anova(lme2.t.kritisert, type= "marginal")[3,4],
+                    anova(lme1.t.kritisert, type= "marginal")[3,4])
+tabell.t.lme <- rbind(tabell.t.lme,samlet.p.grade)
+row.names(tabell.t.lme)[8] <- "Grade" # move overall p velue to just after gender
+tabell.t.lme <- tabell.t.lme[c(1,8,2:7),]
+
+names(tabell.t.lme)
+tabell.t.lme.uj <- tabell.t.lme[,c(2,8,14,20,4,10,16,22,6,12,18,24)]
+tabell.t.lme.uj.round <- tabell.t.lme.uj
+tabell.t.lme.uj.round[,c(1:3,5:7, 9:11)] <- 
+  round(tabell.t.lme.uj[,c(1:3,5:7, 9:11)],3)
+tabell.t.lme.uj.round[,c(4,8,12)] <- 
+  round(tabell.t.lme.uj[,c(4,8,12)],3)
+
+tabell.t.lme.ju <- tabell.t.lme[,c(2,8,14,20,4,10,16,22,6,12,18,24)-1]
+tabell.t.lme.ju.round <- tabell.t.lme.ju
+tabell.t.lme.ju.round[,c(1:3,5:7, 9:11)] <- 
+  round(tabell.t.lme.ju[,c(1:3,5:7, 9:11)],3)
+tabell.t.lme.ju.round[,c(4,8,12)] <- 
+  round(tabell.t.lme.ju[,c(4,8,12)],3)
+
+#take the tables out of R
+?write.table
+write.table(x=tabell.t.lme.uj.round,file="lme.t.uj.txt",
+            quote = FALSE,sep = ";",na ="")
+write.table(x=tabell.t.lme.ju.round,file="lme.t.ju.txt",
+            quote = FALSE,sep = ";",na ="")
+
+# ser p?? variablene i modellene (dette er for missing sp??rsm??l i artikkelen)
+summary(eg[,c("ace01n","ace02n","ace03n","ace04n","ace05n","ace06n","ace07n",
+              "ace08n","ace09n","ace10n", 
+              "gender","trinn6","stor","MASC.T1.0.100.hr","SMFQ.T1.0.100.hr","type")])
+# det er en missing in grade 6, ellers ingen missing
+
+
+# analyser bare mot kj??nn og alder (grade level) som er hierarkisk,justert for type studie
+# F??rst stigma ace 05, 06 og 07
+lme0.flau.gender <- lme(ace05n~gender+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.flau.gender)
+intervals(lme0.flau.gender)
+# ser på det som skal inn i tabell
+summary(lme0.flau.gender)$tTable[,c(1,5)]
+intervals(lme0.flau.gender)$fixed
+
+lme0.ertet.gender <- lme(ace06n~gender+type, random =~1,  
+                         data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ertet.gender)
+intervals(lme0.ertet.gender)
+summary(lme0.ertet.gender)$tTable[,c(1,5)]
+intervals(lme0.ertet.gender)$fixed
+
+lme0.kritisert.gender <- lme(ace07n~gender+type, random =~1,  
+                             data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.kritisert.gender)
+intervals(lme0.kritisert.gender)
+summary(lme0.kritisert.gender)$tTable[,c(1,5)]
+intervals(lme0.kritisert.gender)$fixed
+
+# s?? user satisfaction - ace 01 - 4 og ace 10
+lme0.ace1.gender <- lme(ace01n~gender+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace1.gender)
+intervals(lme0.ace1.gender)
+summary(lme0.ace1.gender)$tTable[,c(1,5)]
+intervals(lme0.ace1.gender)$fixed
+
+lme0.ace2.gender <- lme(ace02n~gender+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace2.gender)
+intervals(lme0.ace2.gender)
+summary(lme0.ace2.gender)$tTable[,c(1,5)]
+intervals(lme0.ace2.gender)$fixed
+
+lme0.ace3.gender <- lme(ace03n~gender+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace3.gender)
+intervals(lme0.ace3.gender)
+summary(lme0.ace3.gender)$tTable[,c(1,5)]
+intervals(lme0.ace3.gender)$fixed
+
+lme0.ace4.gender <- lme(ace04n~gender+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace4.gender)
+intervals(lme0.ace4.gender)
+summary(lme0.ace4.gender)$tTable[,c(1,5)]
+intervals(lme0.ace4.gender)$fixed
+
+lme0.ace10.gender <- lme(ace10n~gender+type, random =~1,  
+                         data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace10.gender)
+intervals(lme0.ace10.gender)
+summary(lme0.ace10.gender)$tTable[,c(1,5)]
+intervals(lme0.ace10.gender)$fixed
+
+# s?? tilslutt coping ace 8 og 9
+lme0.ace08.gender <- lme(ace08n~gender+type, random =~1,  
+                         data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace08.gender)
+intervals(lme0.ace08.gender)
+summary(lme0.ace08.gender)$tTable[,c(1,5)]
+intervals(lme0.ace08.gender)$fixed
+
+lme0.ace09.gender <- lme(ace09n~gender+type, random =~1,  
+                         data = eg[is.na(eg$trinn6)==0,])
+summary(lme0.ace09.gender)
+intervals(lme0.ace09.gender)
+summary(lme0.ace09.gender)$tTable[,c(1,5)]
+intervals(lme0.ace09.gender)$fixed
+
+# ser s?? p?? alder/gradelevel
+# f??rst stigma, ace 5, 6 og 7
+lme0.flau.grade <- lme(ace05n~trinn6+type, random =~1,  
+                       data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.flau.grade, type = "marginal") #samlet p verdi
+summary(lme0.flau.grade)
+intervals(lme0.flau.grade)
+anova(lme0.flau.grade,type = "marginal")
+summary(lme0.flau.grade)$tTable[,c(1,5)]
+
+
+lme0.ertet.grade <- lme(ace06n~trinn6+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ertet.grade, type = "marginal") #samlet p verdi
+summary(lme0.ertet.grade)
+intervals(lme0.ertet.grade)
+anova(lme0.ertet.grade,type = "marginal")
+summary(lme0.ertet.grade)$tTable[,c(1,5)]
+
+lme0.kritisert.grade <- lme(ace07n~trinn6+type, random =~1,  
+                            data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.kritisert.grade, type = "marginal") #samlet p verdi
+summary(lme0.kritisert.grade)
+intervals(lme0.kritisert.grade)
+anova(lme0.kritisert.grade,type = "marginal")
+summary(lme0.kritisert.grade)$tTable[,c(1,5)]
+
+# s?? usersatisfaction ace 1 - 4 og 10
+
+lme0.ace1.grade <- lme(ace01n~trinn6+type, random =~1,  
+                       data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace1.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace1.grade)
+intervals(lme0.ace1.grade)
+anova(lme0.ace1.grade,type = "marginal")
+summary(lme0.ace1.grade)$tTable[,c(1,5)]
+
+lme0.ace2.grade <- lme(ace02n~trinn6+type, random =~1,  
+                       data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace2.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace2.grade)
+intervals(lme0.ace2.grade)
+anova(lme0.ace2.grade,type = "marginal")
+summary(lme0.ace2.grade)$tTable[,c(1,5)]
+
+lme0.ace3.grade <- lme(ace03n~trinn6+type, random =~1,  
+                       data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace3.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace3.grade)
+intervals(lme0.ace3.grade)
+anova(lme0.ace3.grade,type = "marginal")
+summary(lme0.ace3.grade)$tTable[,c(1,5)]
+
+lme0.ace4.grade <- lme(ace04n~trinn6+type, random =~1,  
+                       data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace4.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace4.grade)
+intervals(lme0.ace4.grade)
+anova(lme0.ace4.grade,type = "marginal")
+summary(lme0.ace4.grade)$tTable[,c(1,5)]
+
+
+lme0.ace10.grade <- lme(ace10n~trinn6+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace10.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace10.grade)
+intervals(lme0.ace10.grade)
+anova(lme0.ace10.grade,type = "marginal")
+summary(lme0.ace10.grade)$tTable[,c(1,5)]
+
+# tilslutt coping ace 8 og 9
+
+lme0.ace08.grade <- lme(ace08n~trinn6+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace08.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace08.grade)
+intervals(lme0.ace08.grade)
+anova(lme0.ace08.grade,type = "marginal")
+summary(lme0.ace08.grade)$tTable[,c(1,5)]
+
+lme0.ace09.grade <- lme(ace09n~trinn6+type, random =~1,  
+                        data = eg[is.na(eg$trinn6)==0,])
+anova(lme0.ace09.grade, type = "marginal") #samlet p verdi
+summary(lme0.ace09.grade)
+intervals(lme0.ace09.grade)
+anova(lme0.ace09.grade,type = "marginal")
+summary(lme0.ace09.grade)$tTable[,c(1,5)]
